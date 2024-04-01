@@ -7,7 +7,9 @@ import csv
 import math
 from typing import List, Dict
 Server = __import__('2-hypermedia_pagination').Server
-get_page = __import__('1-simple_pagination').get_page
+index_range = __import__('0-simple_helper_function').index_range
+# get_page = __import__('1-simple_pagination').get_page
+
 
 class Server:
     """Server class to paginate a database of popular baby names.
@@ -40,6 +42,16 @@ class Server:
             }
         return self.__indexed_dataset
 
+    def get_page(self, page: int = 1, page_size: int = 10):
+        """Retrieve a page of dataset based on pagination parameters"""
+        assert isinstance(page, int) and page > 0, "Page must be positive int"
+        assert isinstance(page_size, int) and page_size > 0, "must be pos int"
+
+        dataset = self.dataset()
+        start, end = index_range(page, page_size)
+        if start >= len(dataset):
+            return []
+        return dataset[start:end]
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """Retrieves hypermedia information for pagination with index"""
