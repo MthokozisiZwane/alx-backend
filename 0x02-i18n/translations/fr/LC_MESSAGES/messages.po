@@ -22,7 +22,7 @@ msgstr ""
 msgid "home_title"
 msgstr "Bienvenue chez Holberton"
 
-#: templates/3-index.html:10
-msgid "home_header"
-msgstr "Bonjour monde!"
+#: templates/index.html:10
+msgid "current_time_is"
+msgstr "Nous sommes le %(current_time)s."
 
