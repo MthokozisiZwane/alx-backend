@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Force locale with URL parameter"""
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, gettext
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -29,7 +29,7 @@ def get_locale():
 @app.route('/')
 def index():
     """Route for home page"""
-    return render_template('4-index.html')
+    return render_template('4-index.html', home_header=gettext('home_header'))
 
 
 if __name__ == '__main__':
